@@ -89,11 +89,11 @@ const mutation = new GraphQLObjectType({
         deleteClient: {
             type: ClientType,
             args: {
-                // id: {type: GraphQLID},
-                name: {type: GraphQLString}
+                id: {type: GraphQLID},
+                //name: {type: GraphQLString}
             },
             resolve(parent, args) {
-                return Client.findOneAndRemove(args.name);
+                return Client.findOneAndRemove(args.id);
             }
         },
         addProject: {
