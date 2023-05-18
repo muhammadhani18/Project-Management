@@ -7,7 +7,8 @@ import { GET_CLIENTS } from '../queries/clientQueries';
 function AddClientModel () {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [[phone], setPhone] = useState('');
+  const [phone, setPhone] = useState('');
+
   const [addClient] = useMutation(ADD_CLIENTS,{
     variables: {name,email,phone},
 
@@ -18,8 +19,8 @@ function AddClientModel () {
         cache.writeQuery({
             query: GET_CLIENTS,
             data: {clients: [...clients, addClient]}
-        })
-    } 
+        });
+    } ,
   });
 
   const onSubmit = (e) => {
@@ -80,7 +81,7 @@ function AddClientModel () {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="" className="form-label">Phone</label>
-                    <input type="numeric" className="form-control" id='phone' value={phone} onChange={(e) => setPhone(e.target.value)}/>
+                    <input type="text" className="form-control" id='phone' value={phone} onChange={(e) => setPhone(e.target.value)}/>
                 </div>
                 <button className="btn btn-secondary" data-bs-dismiss='modal' onSubmit={onSubmit}>Submit</button>
             </div>
